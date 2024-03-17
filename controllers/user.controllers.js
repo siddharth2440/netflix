@@ -2,6 +2,7 @@ import User from "../models/user.model.js"
 import cloudinary from "cloudinary"
 import upload from "../middlewares/multer.middleware.js"
 import fs from "fs/promises"
+import movieModel from "../models/movie.model.js"
 const cookieOptions = {
     maxAge:7*24*60*60*1000,
     httpOnly:true,
@@ -198,7 +199,7 @@ const deleteTheUser = async (req,res)=>{
         })
     }
     const deleteUser = await User.deleteOne({_id:userId});
-    if(!deleteTheUser){
+    if(!deleteUser){
         return res.status(400).json({
             success:false,
             message:"User not deleted"
@@ -210,6 +211,7 @@ const deleteTheUser = async (req,res)=>{
         message:"User deleted successfully"
     })
 }
+
 
 export {
     registerUser,loginUser,getProfile,logout,getAllUserInfo,updateUserInfo,deleteTheUser

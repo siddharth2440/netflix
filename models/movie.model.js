@@ -36,7 +36,7 @@ const movieSchema = new Schema({
     year:{
         type:String
     },
-    lmit:{
+    limit:{
         type:Number
     },
     genre:{

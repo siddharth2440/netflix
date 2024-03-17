@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import { config } from "dotenv";
 import userRoute from "./routes/user.routes.js"
+import movieRoute from "./routes/movie.routes.js"
+import listRoute from "./routes/list.routes.js"
 const app = express()
 
 //configuring the DOTENV file
@@ -30,5 +32,7 @@ app.use(morgan("dev"))
 
 //routes-middlewares
 app.use('/api/v1/users',userRoute)
+app.use('/api/v1/movies',movieRoute)
+app.use('/api/v1/lists',listRoute)
 
 export default app;
