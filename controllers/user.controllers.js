@@ -187,6 +187,30 @@ const updateUserInfo =async (req,res)=>{
     })
 }
 
+const deleteTheUser = async (req,res)=>{
+    const {id} = req.user
+    const {userId} = req.params
+    const findThatUser = await User.findOne({_id:userId})
+    if(!findThatUser){
+        return res.status(400).json({
+            success:false,
+            message:"User doen't exist"
+        })
+    }
+    const deleteUser = await User.deleteOne({_id:userId});
+    if(!deleteTheUser){
+        return res.status(400).json({
+            success:false,
+            message:"User not deleted"
+        })
+    }
+
+    return res.status(200).json({
+        success:true,
+        message:"User deleted successfully"
+    })
+}
+
 export {
-    registerUser,loginUser,getProfile,logout,getAllUserInfo,updateUserInfo
+    registerUser,loginUser,getProfile,logout,getAllUserInfo,updateUserInfo,deleteTheUser
 }

@@ -1,7 +1,7 @@
 import { Router } from "express";
 const router = Router()
 import upload from "../middlewares/multer.middleware.js"
-import {registerUser,loginUser,getProfile,logout,getAllUserInfo,updateUserInfo } from "../controllers/user.controllers.js"
+import {registerUser,loginUser,getProfile,logout,getAllUserInfo,updateUserInfo,deleteTheUser } from "../controllers/user.controllers.js"
 import {isLoggedIn,authorizedRoles} from "../middlewares/auth.middleware.js";
 
 router.post('/',upload.single('avatar'),registerUser);
@@ -10,5 +10,5 @@ router.post('/login',loginUser);
 router.get('/me',isLoggedIn,getProfile);
 router.get('/logout',isLoggedIn,logout);
 router.put('/update',isLoggedIn,upload.single('avatar'),updateUserInfo);
-
+router.delete('/:userId',isLoggedIn,authorizedRoles("ADMIN"),deleteTheUser);
 export default router;
