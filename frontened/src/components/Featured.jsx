@@ -5,7 +5,7 @@ const Featured = ({type}) => {
   return (
     <div>
         <div className='h-[90vh] relative'>
-            <video src="https://imdb-video.media-imdb.com/vi2821566745/1434659607842-pgv4ql-1612218463733.mp4?Expires=1710865668&Signature=NGQTmals6JyXgMr6V32W9UmrbLNt46En9xCO2wZmByavIkVJKTLo2-7yyK-mfAeb3QHflLHB4P2wPM6hniO~7dN611v~yMvuoiHRSvLqUXCd~EgAvL5B-VfuAyfMeHS4wfqptqyK~noEozZ05ppKd6cOKSPQHzYUIiPt0mRwL-aiCL6X-4YBGQCJuodcPMKwVQRrCmC~h18KQOzWigrp5ZQIAiJWW2w8Cv9vFxuR1tX5n0KHQhIMhHaYu8lY706C9zNco6Svw-NcI53kBigIhdZ3h59UWoIbtEenN5ND0SPYWoNjmhhpcEzcDXTx6assPYUkVOxwXGUKUs5f8PZNHg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" muted autoPlay loop noremoteplayback onVolumeChange className='h-[100%] py-0 relative top-[-2rem] inline-block w-full'></video>
+            <video src="https://imdb-video.media-imdb.com/vi2821566745/1434659607842-pgv4ql-1612218463733.mp4?Expires=1710865668&Signature=NGQTmals6JyXgMr6V32W9UmrbLNt46En9xCO2wZmByavIkVJKTLo2-7yyK-mfAeb3QHflLHB4P2wPM6hniO~7dN611v~yMvuoiHRSvLqUXCd~EgAvL5B-VfuAyfMeHS4wfqptqyK~noEozZ05ppKd6cOKSPQHzYUIiPt0mRwL-aiCL6X-4YBGQCJuodcPMKwVQRrCmC~h18KQOzWigrp5ZQIAiJWW2w8Cv9vFxuR1tX5n0KHQhIMhHaYu8lY706C9zNco6Svw-NcI53kBigIhdZ3h59UWoIbtEenN5ND0SPYWoNjmhhpcEzcDXTx6assPYUkVOxwXGUKUs5f8PZNHg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" muted autoPlay loop className='h-[100%] py-0 relative top-[-2rem] inline-block w-full'></video>
             {
                 type && (
                     <div className='category absolute top-[1rem] left-[3rem]'>

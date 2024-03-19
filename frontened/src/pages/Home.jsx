@@ -1,6 +1,7 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import Featured from '../components/Featured'
+import Navbar from '../components/Navbar.jsx'
+import Featured from '../components/Featured.jsx'
+import List from '../components/List.jsx'
 
 const Home = () => {
   return (
@@ -8,8 +9,12 @@ const Home = () => {
         <Navbar/>
         <div className='otheers relative top-[10vh]'>
             <Featured type={"movie"}/>
-            <h1>hello world</h1>
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <div className='min-h-[100vh] bg-black'>
+              <List/>
+              <List/>
+              <List/>
+              <List/>
+            </div>
         </div>
     </div>
   )
