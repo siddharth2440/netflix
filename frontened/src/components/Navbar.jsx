@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import image from "../assets/netflixLogo.png"
+import {Link} from 'react-router-dom'
 import {AiOutlineFileSearch,AiTwotoneBell,AiOutlineArrowDown} from "react-icons/ai"
 const Navbar = () => {
 
@@ -10,9 +11,9 @@ const Navbar = () => {
             <img src={image} alt="" className='h-[100%] w-[100%]'/>
         </div>
         <div className="links flex items-center justify-center gap-9">
-            <h2>Homepage</h2>
-            <h2>Series</h2>
-            <h2>Movies</h2>
+            <Link to="/"><h2>Homepage</h2></Link>
+            <Link to="/series"><h2>Series</h2></Link>
+            <Link to="/movies"><h2>Movies</h2></Link>
             <h2>News and Popular</h2>
             <h2>My List</h2>
         </div>

@@ -6,7 +6,7 @@ import Home from './pages/Home.jsx'
 import Watch from './pages/Watch.jsx'
 import SignUp from './pages/SignUp.jsx'
 import Login from './pages/Login.jsx'
-
+import {Route,Routes} from "react-router-dom"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,7 +16,13 @@ function App() {
       {/* <Home/> */}
       {/* <Watch/> */}
       {/* <SignUp/> */}
-      <Login/>
+      {/* <Login/> */}
+      <Routes>
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/watch" element={<Watch/>}></Route>
+        <Route path="/movies" element={<Home type={"movie"}/>}></Route>
+        <Route path="/series" element={<Home type={"series"}/>}></Route>
+      </Routes>
     </>
   )
 }
