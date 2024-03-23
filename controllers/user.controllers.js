@@ -68,6 +68,9 @@ const registerUser =async (req,res)=>{
 
 const loginUser = async (req,res)=>{
     const {email,password} = req.body
+    // console.log("Abrar");
+    // console.log(email);
+    // console.log(password);
     if(!email || !password){
         return res.status(400).json({
             success:false,
@@ -76,6 +79,8 @@ const loginUser = async (req,res)=>{
     }
 
     const isFound = await User.findOne({email:email}).select("+password")
+    // console.log("isFound ");
+    // console.log(isFound);
     if(!isFound){
         return res.status(400).json({
             success:false,
@@ -90,13 +95,16 @@ const loginUser = async (req,res)=>{
             message:"Invalid Details"
         })
     }
+    console.log("Generating the token");
 
     const token = await isFound.createJWTToken();
     res.cookie("token",token,cookieOptions)
-
+    isFound.password = undefined
+    // console.log(isFound);
     return res.status(200).json({
         success:true,
-        message:"LoggedIn Successfully"
+        message:"LoggedIn Successfully",
+        isFound
     })
 }
 
@@ -144,7 +152,9 @@ const getAllUserInfo = async (req,res)=>{
 
 const updateUserInfo =async (req,res)=>{
     // console.log(req.body);
-    const {fullName,avatar} = req.body;
+    const {fullName,avatar,userId} = req.body;
+    console.log(fullName);
+    console.log(userId);
     if(!fullName){
         return res.status(400).json({
             success:false,
@@ -153,8 +163,15 @@ const updateUserInfo =async (req,res)=>{
     }
 
     const {id} = req.user
+    if(id!==userId){
+        return res.status(400).json({
+            success:false,
+            message:" Invalid Id"
+        })
+    }
+
     const user = await User.findOne({_id:id});
-    console.log(user);
+    // console.log(user);
     user.fullName = fullName;
     if(!user){
         return res.status(400).json({

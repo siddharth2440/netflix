@@ -41,6 +41,7 @@ export const  updateMovie =async (req,res)=>{
 }
 
 export const  getMovieDetails =async (req,res)=>{
+    console.log("API CAllde");
     const getMovieInfo = await Movie.findOne({_id:req.params.id})
     if(!getMovieInfo){
         return res.status(400).json({

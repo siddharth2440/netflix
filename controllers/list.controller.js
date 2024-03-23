@@ -39,19 +39,25 @@ export const deleteList = async (req,res)=>{
 }
 
 export const getList =async (req,res)=>{
+    // console.log("Called");
     const typeQuery = req.query.type
     const genreQuery = req.query.genre
+    console.log("GenreQuery is "+genreQuery);
+    console.log("TypeQuery "+typeQuery);
     let list = []
+    console.log("log");
     try {
         if(typeQuery){
             if(genreQuery){
                 list = await List.aggregate([{$sample:{size:10}},{$match:{type:typeQuery,genre:genreQuery}}])
+
             }else{
                 list = await List.aggregate([{$sample:{size:10}},{$match:{type:typeQuery}}])
             }
         }else{
             list = await List.aggregate([{$sample:{size:10}}])
         }
+        // console.log(list);
        return res.status(200).json({
         success:true,
         message:"List is there",

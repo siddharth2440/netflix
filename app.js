@@ -16,14 +16,20 @@ config()
 app.use(bodyParser.json({limit:'500mb'}))
 app.use(bodyParser.urlencoded({extended:true,limit:'500mb'}))
 
+//cors
+app.use(cors({
+    origin:["http://localhost:5173"],
+    credentials:true
+}))
+
 //cookie-parser
 app.use(cookieParser())
 
 //using cors
-app.use(cors({
-    origin:process.env.FRONTENED_URL,
-    credentials:true
-}))
+// app.use(cors({
+//     origin:process.env.FRONTENED_URL,
+//     credentials:true
+// }))
 
 
 //using logger
