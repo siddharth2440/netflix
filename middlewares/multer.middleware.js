@@ -18,6 +18,7 @@ const upload = multer({
             console.log("UnsupportedFile extension");
             return
         }
+        console.log("file is Uploaded");
         cb(null,true);
     }
 })

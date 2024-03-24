@@ -155,6 +155,7 @@ const updateUserInfo =async (req,res)=>{
     const {fullName,avatar,userId} = req.body;
     console.log(fullName);
     console.log(userId);
+    console.log(req.body);
     if(!fullName){
         return res.status(400).json({
             success:false,
@@ -171,14 +172,23 @@ const updateUserInfo =async (req,res)=>{
     }
 
     const user = await User.findOne({_id:id});
-    // console.log(user);
+    console.log(user);
     user.fullName = fullName;
+    console.log("Full Sets");
     if(!user){
         return res.status(400).json({
             success:false,
             message:"User is not exists"
         })
     }
+    // console.log(avatar);
+    // if(!req.file){
+    //     console.log("file is not there");
+    //     return res.status(400).json({
+    //         success:false,
+    //         message:"File is not there to upload"
+    //     })
+    // }
     if(req.file){
         await cloudinary.v2.uploader.destroy(user.avatar.public_id)
         try {
@@ -199,6 +209,7 @@ const updateUserInfo =async (req,res)=>{
             console.log("Error in uploading the file to the Backened Side");
         }
     }
+    await user.save();
     return res.status(200).json({
         success:true,
         message:"User updated Successfully"
