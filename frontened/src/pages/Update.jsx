@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import {BiSkipPrevious} from "react-icons/bi"
 import { useNavigate } from 'react-router-dom'; 
 import { useDispatch, useSelector } from 'react-redux';
-import { updateProfile } from '../redux/slices/userSlice.js';
+import { fetchUser, updateProfile } from '../redux/slices/userSlice.js';
 const Login = () => {
     const {user} = useSelector((state)=>state.auth)
     const navigate = useNavigate()
@@ -12,7 +12,7 @@ const Login = () => {
         navigate('/profile')
     }
     const [fullName,setFullName] = useState("")
-    const [avatar,setAvatar] = useState(null)
+    const [avatar,setAvatar] = useState(null)   
     const [previewImage,setPreviewImage] = useState(null)
 
     const getImage = (e)=>{
@@ -36,6 +36,7 @@ const Login = () => {
             return toast.error("Please Fill all the details")
         }
         const res =await dispatch(updateProfile({avatar,fullName,userId:user._id}))
+        dispatch(fetchUser());
         if(!res){
             toast('Error in dispatching the Update Action')
         }

@@ -3,9 +3,9 @@ import axiosInstance from "../../helpers/axiosInstance";
 import toast from "react-hot-toast";
 
 const initialState = {
-    user:localStorage.getItem("user") || {},
-    role:localStorage.getItem("role") || "",
-    isLoggedIn:localStorage.getItem("isLoggedIn") || false
+    user: {},
+    role: "",
+    isLoggedIn: false
 }
 
 export const login = createAsyncThunk('/auth/login',async ({email,password})=>{
@@ -38,7 +38,12 @@ export const logout = createAsyncThunk('/auth/logout',async ()=>{
 
 export const updateProfile = createAsyncThunk('auth/profile/update',async (data)=>{
     console.log(data);
-    const updateRes = axiosInstance.put('/users/update',data)
+    // console.log({avatar});
+    console.log("logging the avatar");
+    console.log(data.avatar);
+    const updateRes = axiosInstance.put('/users/update',data,{
+        headers:{"content":"multipart/formdata"}
+    })
     toast.promise(updateRes,{
         success:"Updated",
         loading:"updating",
@@ -47,6 +52,10 @@ export const updateProfile = createAsyncThunk('auth/profile/update',async (data)
     return (await res).data
 })
 
+export const fetchUser = createAsyncThunk("/users/getProfile",async ()=>{
+    const res = axiosInstance.get('/users/me')
+    return (await res).data.fetchUserDetails
+})
 
 
 const authSlice = createSlice({
@@ -69,6 +78,17 @@ const authSlice = createSlice({
             state.isLoggedIn = false,
             state.user={},
             state.role=""
+        }),
+        builder.addCase(fetchUser.fulfilled,(state,action)=>{
+            localStorage.clear();
+            // console.log("fetchUser Payload");
+            // console.log(action.payload);
+            localStorage.setItem("user",JSON.stringify(action?.payload))
+            localStorage.setItem("role",action?.payload?.role)
+            localStorage.setItem("isLoggedIn",true)
+            state.user = action?.payload
+            state.role = action?.payload?.role
+            state.isLoggedIn = true
         })
 
     }
